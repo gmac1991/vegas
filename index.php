@@ -1,8 +1,13 @@
+
 <?php
 
-require_once('classes/carta.php');
+require_once('classes/banca.php');
 
-
-$carta = new Carta();
-
-print_r($carta->verDono());
+?>
+<pre>
+<ul>
+    <li>Semente: <?= $semente_carta ?></li>
+    <li>Carta: <?= $figura . $simbolo ?></li>
+    <li>Poder: <?= $carta->getPoder() ?></li>
+</ul>
+</pre>
