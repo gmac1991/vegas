@@ -1,15 +1,9 @@
 <?php
 require_once('classes/carta.php');
-require_once('classes/jogo.php');
 
 class Banca {
 
     private array $baralho;
-
-    public function criarJogo(int $jogadores)
-    {
-        return new Jogo($jogadores);
-    }
 
     public function criarBaralho():array
     {

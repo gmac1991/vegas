@@ -3,16 +3,28 @@
 class Jogo {
 
     private int $jogadores;
+    private string $arquivo_jogo;
 
-    function _construct(int $jogadores = 2) {
+    function __construct(int $jogadores = 2) {
 
         $this->jogadores = $jogadores;
 
-        $timestamp = date("%d%m%yH:i:s");
+        $nome_arquivo = date("J_d-m-y_H-i-s");
 
-        mkdir("C:\\dev\\fdp\\" . $timestamp);
+        $arquivo = fopen(DIR_JOGOS . $nome_arquivo, "w");
 
+        $this->arquivo_jogo = $nome_arquivo;
 
+    }
+
+    public function getArquivoJogo():string 
+    {
+        return $this->arquivo_jogo;
+    }
+
+    public function getJogadores():int 
+    {
+        return $this->jogadores;
     }
 
 }
