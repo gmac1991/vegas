@@ -1,5 +1,7 @@
 <?php
+require_once('config.php');
 require_once('classes/carta.php');
+require_once('classes/jogo.php');
 
 class Banca {
 
@@ -112,6 +114,36 @@ class Banca {
         }
 
         return $figura . $simbolo;
+    }
+
+    public function criarJogo(int $jogadores):Jogo
+    {
+        $jogo = new Jogo($jogadores);
+
+        $jogo->setData(date("d-m-Y_H-i-s"));
+
+        $bd = new PDO("sqlite:" . DB);
+
+        $dados = array('num' => $jogo->getJogadores(), 'data' => $jogo->getData());
+
+        $insert = "INSERT INTO jogos (jogadores, data) VALUES (:num, :data)";
+        $stmt = $bd->prepare($insert);
+
+    
+        $stmt->bindParam(':num', $dados['num'], PDO::PARAM_STR);
+        $stmt->bindParam(':data', $dados['data'], PDO::PARAM_STR);
+
+        $stmt->execute();
+       
+        $query = "SELECT LAST_INSERT_ROWID() AS ID";
+        $stmt = $bd->prepare($query);
+        $stmt->execute();
+
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $jogo->setId($res['ID']);
+        
+        return $jogo;
     }
 
     

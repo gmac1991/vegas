@@ -2,29 +2,44 @@
 
 class Jogo {
 
+    private int $id;
+    private string $data;
     private int $jogadores;
-    private string $arquivo_jogo;
+
 
     function __construct(int $jogadores = 2) {
 
         $this->jogadores = $jogadores;
 
-        $nome_arquivo = date("J_d-m-y_H-i-s");
-
-        $arquivo = fopen(DIR_JOGOS . $nome_arquivo, "w");
-
-        $this->arquivo_jogo = $nome_arquivo;
 
     }
 
-    public function getArquivoJogo():string 
-    {
-        return $this->arquivo_jogo;
-    }
 
     public function getJogadores():int 
     {
         return $this->jogadores;
     }
+
+    public function getId():int
+    {
+       return $this->id;
+    }
+
+    public function setId(int $id) 
+    {
+       $this->id = $id;
+    }
+
+    public function setData(string $data) 
+    {
+       $this->data = $data;
+    }
+
+    public function getData():string 
+    {
+       return $this->data;
+    }
+
+
 
 }

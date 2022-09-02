@@ -1,14 +1,13 @@
 
 <?php
 
-require_once('config.php');
+
 require_once('classes/banca.php');
-require_once('classes/jogo.php');
 
 
 $banca = new Banca;
 
-$jogo = new Jogo(7);
+$jogo = $banca->criarJogo(4);
 
 $baralho = $banca->criarBaralho();
 $banca->embaralhar($baralho);
@@ -19,9 +18,11 @@ $tombo = $banca->tombarCarta($baralho);
 ?>
 <pre>
 <ul>
+    <li>ID: <?= $jogo->getId(); ?></li>
     <li>N. de jogadores: <?= $jogo->getJogadores(); ?></li>
+    <li>Máximo de cartas por jogador: <?= floor(39 / $jogo->getJogadores()); ?></li>
     <li>Tombo: <?= $banca->ilustrarCarta($tombo); ?></li>
-    <li>Arquivo do Jogo: <?= $jogo->getArquivoJogo(); ?></li>
+ 
 </ul>
 
 </pre>
